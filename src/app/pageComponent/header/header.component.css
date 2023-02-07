@@ -1,0 +1,73 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 24px;
+  border-bottom: 1px solid rgba(0, 65, 102, 0.2);
+}
+
+.header__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: baseline;
+}
+
+.header__item:first-child {
+  padding: 4px 0;
+}
+
+.header__btn {
+  width: 18px;
+  height: 12px;
+  position: relative;
+}
+
+.header__btn span {
+  width: 18px;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  background-color: rgba(0, 57, 92, 0.8);
+}
+
+.header__btn span:nth-child(2) {
+  top: calc(50% - 4px);
+}
+
+.header__btn span:nth-child(3) {
+  top: calc(50% + 4px);
+}
+
+.login_field {
+  padding: 0;
+  position: relative;
+  padding-right: 16px;
+  align-items: center;
+  gap: 8px;
+}
+
+.login_field::before {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-image: url("../../../img/Header/HeaderLogin/avatar.svg");
+  border-radius: 50%;
+  left: -44px;
+}
+
+.login_field p:nth-of-type(2) {
+  font-size: 12px;
+  line-height: 110%;
+  color: rgba(0, 32, 51, 0.6);
+}
+
+.login_field a {
+  height: 16px;
+  width: 16px;
+  background-image: url("../../../img/Header/HeaderLogin/Vector.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
