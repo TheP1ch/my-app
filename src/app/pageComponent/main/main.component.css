@@ -1,0 +1,78 @@
+:host {
+  display: flex;
+}
+
+.leftSide {
+  border-right: 1px solid rgba(0, 65, 102, 0.2);
+  padding: 20px 0px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: rgba(0, 32, 51, 0.6);
+  flex: 1 0 auto;
+}
+.mainPart {
+  flex: 14 0 auto;
+}
+
+.groupSector {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.addGroupButton {
+  margin-top: 10px;
+  padding: 0px 39px 0px 20px;
+  border: 1px solid #0078d2;
+  width: fit-content;
+  color: #0078d2;
+  background-color: #ffffff;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+}
+
+.addGroupButton span {
+  line-height: 32px;
+}
+
+.addGroupButton span::after {
+  content: "";
+  position: absolute;
+  background-image: url("../../../assets/img/Main/Vector.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 12px;
+  right: 16px;
+  top: 10px;
+  height: 12px;
+}
+
+.groupSector__link {
+  line-height: 140%;
+}
+
+.groupSector__link_active {
+  font-weight: 700;
+}
+
+.leftSide__menuSettings {
+  line-height: 120%;
+  font-size: 12px;
+  position: relative;
+  margin-left: 22px;
+}
+
+.leftSide__menuSettings::before {
+  position: absolute;
+  content: "";
+  width: 12px;
+  height: 12px;
+  left: -24px;
+  background-image: url("../../../assets/img/Main/IconSettings.svg");
+}
+
+.mainPart {
+  padding: 56px 24px 56px 40px;
+}

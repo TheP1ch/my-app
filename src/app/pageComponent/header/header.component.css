@@ -6,6 +6,12 @@
   border-bottom: 1px solid rgba(0, 65, 102, 0.2);
 }
 
+.header__item h1 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+}
+
 .header__item {
   display: flex;
   flex-direction: row;
@@ -22,6 +28,7 @@
   width: 18px;
   height: 12px;
   position: relative;
+  cursor: pointer;
 }
 
 .header__btn span {
@@ -48,12 +55,12 @@
   gap: 8px;
 }
 
-.login_field::before {
+.login_field a:first-child:before {
   content: "";
   position: absolute;
   width: 32px;
   height: 32px;
-  background-image: url("../../../img/Header/HeaderLogin/avatar.svg");
+  background-image: url("../../../assets/img/Header/HeaderLogin/avatar.svg");
   border-radius: 50%;
   left: -44px;
 }
@@ -64,10 +71,11 @@
   color: rgba(0, 32, 51, 0.6);
 }
 
-.login_field a {
+.login_field > a {
+  display: block;
   height: 16px;
   width: 16px;
-  background-image: url("../../../img/Header/HeaderLogin/Vector.svg");
+  background-image: url("../../../assets/img/Header/HeaderLogin/down.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
