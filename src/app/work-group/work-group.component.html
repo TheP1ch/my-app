@@ -6,7 +6,17 @@
     <button type="reset" (click)="clearInput()"></button>
     <button type="button" class="searchButton"></button>
   </div>
-  <button type="button" class="filter"><span>Фильтры</span></button>
+  <button type="button" class="filterButton"><span>Фильтры</span></button>
 </header>
 
-<main></main>
+<main>
+  <ng-container *ngFor="let status of statuses">
+    <div class="statusColumn">
+      <h3>{{ status.name.toUpperCase() }}</h3>
+      <div class="countDeals"></div>
+      <p class="amount">{{ 0 }}₽</p>
+      <button type="button" class="addTodoIncoming"></button>
+      <app-todo-component [task]="task"></app-todo-component>
+    </div>
+  </ng-container>
+</main>

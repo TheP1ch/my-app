@@ -1,9 +1,16 @@
-<section>
+<section
+  [ngClass]="{
+    low: task.priorityId === 0,
+    mid: task.priorityId === 1,
+    high: task.priorityId === 2,
+    critical: task.priorityId === 3
+  }"
+>
   <header>
     <div class="todoInfo">
-      <h3>Ошибка датчика КП-312</h3>
-      <span class="price">2 500 ₽</span>
-      <span>21 января 2022</span>
+      <h3>{{ task.name }}</h3>
+      <span class="price">{{ task.price }}</span>
+      <span>{{ task.createDate | date : "dd MMMM yyyy" : "" : "ru" }}</span>
     </div>
     <div class="feedBack">
       <a href="#" class="phoneButton"></a>
@@ -15,12 +22,18 @@
   <main>
     <div class="changeDate">
       <span>Дата изменения</span>
-      <p>2 февраля 2022</p>
+      <p>{{ task.lastUpdateDate | date : "dd MMMM yyyy" : "" : "ru" }}</p>
     </div>
-    <div class="userInfo">
+    <div class="userInfo" *ngIf="user">
       <span>Исполнитель</span>
       <a>
-        <span>Иван Васильев</span>
+        <img
+          [src]="user.imgUrl"
+          alt="Фото пользователя"
+          width="24px"
+          height="24px"
+        />
+        <span>{{ user.name }}</span>
       </a>
     </div>
   </main>

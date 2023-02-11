@@ -1,27 +1,45 @@
 section {
   box-sizing: border-box;
   padding: 20px;
-  width: 290px;
-  height: 290px;
+  width: 289px;
+  height: 289px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 4px;
+  background: #ffffff;
   box-shadow: 0px 2px 2px rgba(0, 32, 51, 0.02),
     0px 2px 8px rgba(0, 32, 51, 0.16);
   align-items: flex-start;
   position: relative;
+  gap: 16px;
 }
 
 section::before {
   content: "";
   position: absolute;
-  background: #ffa429;
   height: 4px;
   left: 0px;
   right: 0px;
   top: 0px;
   border-radius: 4px 4px 0px 0px;
+}
+
+.low::before {
+  background: #0aee29;
+}
+
+.mid::before {
+  background: #89258b;
+}
+
+.high::before {
+  background: #ffa429;
+}
+
+.critical::before {
+  background: #fb0202;
+  background: #ffa429;
 }
 
 header {
@@ -47,6 +65,7 @@ span {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  line-height: 120%;
 }
 
 .userInfo a {
@@ -55,17 +74,14 @@ span {
   line-height: 100%;
   position: relative;
   padding: 6px 8px 6px 28px;
+  cursor: pointer;
 }
 
-.userInfo a::before {
+.userInfo a > img {
   position: absolute;
-  content: "";
-  width: 24px;
-  height: 24px;
   border-radius: 50%;
   top: 2px;
   left: 0px;
-  background-image: url("../../assets/img/todo/UserAvatar.svg");
 }
 
 .price {
@@ -78,6 +94,7 @@ span {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 8px;
 }
 
 .feedBack {
@@ -103,4 +120,36 @@ span {
 
 .commentButton {
   background-image: url("../../assets/img/todo/comment.svg");
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editTodoButton {
+  font-size: 12px;
+  line-height: 24px;
+  color: rgba(0, 57, 92, 0.8);
+  padding: 0px 12px 0px 28px;
+  border: none;
+  width: 130px;
+  height: 24px;
+  background: rgba(0, 66, 105, 0.07);
+  border-radius: 4px;
+  position: relative;
+}
+
+.editTodoButton::before {
+  content: "";
+  position: absolute;
+  background-image: url("../../assets/img/todo/+button.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 12px;
+  left: 8px;
+  top: 6px;
+  height: 12px;
 }
