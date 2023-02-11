@@ -11,12 +11,21 @@
 
 <main>
   <ng-container *ngFor="let status of statuses">
-    <div class="statusColumn">
-      <h3>{{ status.name.toUpperCase() }}</h3>
-      <div class="countDeals"></div>
-      <p class="amount">{{ 0 }}₽</p>
+    <div
+      class="statusColumn"
+      *ngIf="getTasksCertainGroup(tasksData | async, status.id) as tasks"
+    >
+      <h3>
+        {{ status.name | uppercase }}
+        <div class="countDeals">{{ tasks.length }}</div>
+      </h3>
+
+      <p class="sum">{{ sumCalculation(tasks) }} ₽</p>
       <button type="button" class="addTodoIncoming"></button>
-      <app-todo-component [task]="task"></app-todo-component>
+      <app-todo-component
+        *ngFor="let task of tasks"
+        [task]="task"
+      ></app-todo-component>
     </div>
   </ng-container>
 </main>

@@ -111,6 +111,7 @@ main h3 {
   color: #002033;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  position: relative;
 }
 
 .statusColumn {
@@ -126,7 +127,20 @@ main h3 {
   gap: 8px;
 }
 
-.amount {
+.countDeals {
+  width: 23px;
+  height: 20px;
+  text-align: center;
+  background: #dee4e8;
+  border-radius: 50px;
+  position: absolute;
+  font-size: 10px;
+  line-height: 20px;
+  top: -1px;
+  right: -31px;
+}
+
+.sum {
   font-size: 32px;
   line-height: 150%;
   color: rgba(0, 32, 51, 0.3);

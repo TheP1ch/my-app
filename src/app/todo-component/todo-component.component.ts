@@ -19,10 +19,8 @@ export class TodoComponentComponent implements OnChanges {
   user: User | undefined;
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     if (changes['task']) {
       this.user = Users.find((user) => user.id === this.task?.userId);
     }
-    console.log(this.user);
   }
 }

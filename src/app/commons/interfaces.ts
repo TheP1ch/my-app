@@ -6,7 +6,7 @@ export interface Task {
   createDate: Date;
   userId?: number;
   priorityId: number;
-  statusId: number;
+  statusNumber: number;
   statusPosition: number;
 }
 

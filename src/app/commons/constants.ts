@@ -7,6 +7,11 @@ export const Users: User[] = [
     name: 'Иван Васильевич',
     imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
   },
+  {
+    id: 0,
+    name: 'Иван Васильевич',
+    imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
+  },
 ];
 
 export const Statuses = [
@@ -60,7 +65,7 @@ export const beginTasks: Task[] = [
     createDate: new Date(),
     userId: 0,
     priorityId: 0,
-    statusId: 0,
+    statusNumber: 0,
     statusPosition: 0,
   },
   {
@@ -71,7 +76,7 @@ export const beginTasks: Task[] = [
     createDate: new Date(),
     userId: 1,
     priorityId: 3,
-    statusId: 0,
+    statusNumber: 0,
     statusPosition: 1,
   },
   {
@@ -82,7 +87,7 @@ export const beginTasks: Task[] = [
     createDate: new Date(),
     userId: 1,
     priorityId: 1,
-    statusId: 1,
+    statusNumber: 1,
     statusPosition: 0,
   },
   {
@@ -93,7 +98,7 @@ export const beginTasks: Task[] = [
     createDate: new Date(),
     userId: 0,
     priorityId: 0,
-    statusId: 2,
+    statusNumber: 2,
     statusPosition: 0,
   },
   {
@@ -104,7 +109,7 @@ export const beginTasks: Task[] = [
     createDate: new Date(),
     userId: 2,
     priorityId: 2,
-    statusId: 3,
+    statusNumber: 3,
     statusPosition: 0,
   },
 ];
