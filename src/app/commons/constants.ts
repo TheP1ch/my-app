@@ -56,7 +56,7 @@ export const Priorities = [
   },
 ];
 
-export const beginTasks: Task[] = [
+export const Tasks: Task[] = [
   {
     id: 0,
     name: 'Обновление ПО',
@@ -110,6 +110,17 @@ export const beginTasks: Task[] = [
     userId: 2,
     priorityId: 2,
     statusNumber: 3,
+    statusPosition: 0,
+  },
+  {
+    id: 5,
+    name: 'Ошибка датчика КП-312',
+    price: 2500,
+    lastUpdateDate: new Date(Date.now() - 43200000),
+    createDate: new Date(),
+    userId: 2,
+    priorityId: 2,
+    statusNumber: 4,
     statusPosition: 0,
   },
 ];
