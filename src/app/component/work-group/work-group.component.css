@@ -37,7 +37,7 @@ header {
   background: inherit;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
-  background-image: url("../../assets/img/workGroup/IconSearch.svg");
+  background-image: url("../../../assets/img/workGroup/IconSearch.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -45,7 +45,7 @@ header {
 button[type="reset"] {
   position: absolute;
   background: inherit;
-  background-image: url("../../assets/img/workGroup/IconClose.svg");
+  background-image: url("../../../assets/img/workGroup/IconClose.svg");
   background-repeat: no-repeat;
   background-position: center;
   border: none;
@@ -75,7 +75,7 @@ button[type="reset"] {
 .addTodo span::before {
   content: "";
   position: absolute;
-  background-image: url("../../assets/img/workGroup/IconBackward.svg");
+  background-image: url("../../../assets/img/workGroup/IconBackward.svg");
   background-repeat: no-repeat;
   background-position: center;
   width: 12px;
@@ -146,13 +146,33 @@ main h3 {
   color: rgba(0, 32, 51, 0.3);
 }
 
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
 .addTodoIncoming {
   width: 32px;
   height: 32px;
   border-radius: 4px;
   background: none;
   border: none;
-  background-image: url("../../assets/img/workGroup/button+.svg");
+  background-image: url("../../../assets/img/workGroup/button+.svg");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.statusColumn.cdk-drop-list-dragging
+  app-todo-component:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

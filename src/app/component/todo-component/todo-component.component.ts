@@ -5,8 +5,8 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { Users } from '../commons/constants';
-import { Task, User } from '../commons/interfaces';
+import { Users } from '../../commons/constants';
+import { Task, User } from '../../commons/interfaces';
 
 @Component({
   selector: 'app-todo-component',

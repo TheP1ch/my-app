@@ -8,8 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './pageComponent/header/header.component';
 import { MainComponent } from './pageComponent/main/main.component';
-import { TodoComponentComponent } from './todo-component/todo-component.component';
-import { WorkGroupComponent } from './work-group/work-group.component';
+import { TodoComponentComponent } from './component/todo-component/todo-component.component';
+import { WorkGroupComponent } from './component/work-group/work-group.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 registerLocaleData(localeRu);
 
@@ -21,7 +23,13 @@ registerLocaleData(localeRu);
     TodoComponentComponent,
     WorkGroupComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

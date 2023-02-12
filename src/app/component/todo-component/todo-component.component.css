@@ -111,15 +111,15 @@ span {
 }
 
 .phoneButton {
-  background-image: url("../../assets/img/todo/IconPhone.svg");
+  background-image: url("../../../assets/img/todo/IconPhone.svg");
 }
 
 .messageButton {
-  background-image: url("../../assets/img/todo/message.svg");
+  background-image: url("../../../assets/img/todo/message.svg");
 }
 
 .commentButton {
-  background-image: url("../../assets/img/todo/comment.svg");
+  background-image: url("../../../assets/img/todo/comment.svg");
 }
 
 footer {
@@ -145,7 +145,7 @@ footer {
 .editTodoButton::before {
   content: "";
   position: absolute;
-  background-image: url("../../assets/img/todo/+button.svg");
+  background-image: url("../../../assets/img/todo/+button.svg");
   background-repeat: no-repeat;
   background-position: center;
   width: 12px;

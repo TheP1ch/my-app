@@ -9,22 +9,31 @@
   <button type="button" class="filterButton"><span>Фильтры</span></button>
 </header>
 
-<main>
+<main cdkDropListGroup>
   <ng-container *ngFor="let status of statuses">
     <div
       class="statusColumn"
-      *ngIf="getTasksCertainGroup(tasksData | async, status.id) as tasks"
+      cdkDropList
+      [cdkDropListData]="getTasksCertainGroup(tasksData, status.id)"
+      (cdkDropListDropped)="
+        drop($event, getTasksCertainGroup(tasksData, status.id))
+      "
     >
       <h3>
         {{ status.name | uppercase }}
-        <div class="countDeals">{{ tasks.length }}</div>
+        <div class="countDeals">
+          {{ getTasksCertainGroup(tasksData, status.id).length }}
+        </div>
       </h3>
 
-      <p class="sum">{{ sumCalculation(tasks) }} ₽</p>
+      <p class="sum">
+        {{ sumCalculation(getTasksCertainGroup(tasksData, status.id)) }} ₽
+      </p>
       <button type="button" class="addTodoIncoming"></button>
       <app-todo-component
-        *ngFor="let task of tasks"
+        *ngFor="let task of getTasksCertainGroup(tasksData, status.id)"
         [task]="task"
+        cdkDrag
       ></app-todo-component>
     </div>
   </ng-container>
