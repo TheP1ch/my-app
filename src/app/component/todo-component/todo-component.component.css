@@ -39,7 +39,6 @@ section::before {
 
 .critical::before {
   background: #fb0202;
-  background: #ffa429;
 }
 
 header {

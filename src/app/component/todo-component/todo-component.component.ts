@@ -1,8 +1,10 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,7 +19,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 })
 export class TodoComponentComponent implements OnChanges {
   @Input() public task: Task;
-
+  @Output() onChangeTask: EventEmitter<Task> = new EventEmitter<Task>();
   constructor(private dialog: MatDialog) {}
 
   user: User | undefined;
@@ -28,6 +30,15 @@ export class TodoComponentComponent implements OnChanges {
   }
 
   onOpenDialog() {
-    this.dialog.open(EditDialogComponent);
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      width: '520px',
+      height: '577px',
+      restoreFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // this.onChangeTask.emit(result);
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

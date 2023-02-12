@@ -12,8 +12,9 @@ import {
   SimpleChanges,
   DoCheck,
   OnInit,
+  OnDestroy,
 } from '@angular/core';
-import { lastValueFrom, map } from 'rxjs';
+import { lastValueFrom, map, Subscription } from 'rxjs';
 import { Statuses } from '../../commons/constants';
 import { Task } from '../../commons/interfaces';
 import { TaskServiceService } from '../../services/task-service.service';
@@ -23,9 +24,9 @@ import { TaskServiceService } from '../../services/task-service.service';
   templateUrl: './work-group.component.html',
   styleUrls: ['./work-group.component.css'],
 })
-export class WorkGroupComponent implements OnInit {
+export class WorkGroupComponent implements OnInit, OnDestroy {
   @ViewChild('searchInput', { static: false }) searchInput: ElementRef;
-
+  private subscribeTaskService: Subscription;
   public readonly statuses = Statuses;
   constructor(private taskService: TaskServiceService) {}
   // вернет Map в котором ключ это номер группы, а Task[] это задачи принадлежащие этой группе
@@ -74,6 +75,12 @@ export class WorkGroupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.taskService.taskMap.subscribe((data) => (this.tasksData = data));
+    this.subscribeTaskService = this.taskService.taskMap.subscribe(
+      (data) => (this.tasksData = data)
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscribeTaskService.unsubscribe();
   }
 }

@@ -1,0 +1,32 @@
+section {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 26px 14px 13px 26px;
+  position: relative;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  height: 8px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.low::before {
+  background: #0aee29;
+}
+
+.mid::before {
+  background: #89258b;
+}
+
+.high::before {
+  background: #ffa429;
+}
+
+.critical::before {
+  background: #fb0202;
+}
