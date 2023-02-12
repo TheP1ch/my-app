@@ -12,6 +12,7 @@ import { TodoComponentComponent } from './component/todo-component/todo-componen
 import { WorkGroupComponent } from './component/work-group/work-group.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDialogModule } from '@angular/material/dialog';
 
 registerLocaleData(localeRu);
 
@@ -29,6 +30,7 @@ registerLocaleData(localeRu);
     FormsModule,
     BrowserAnimationsModule,
     DragDropModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
