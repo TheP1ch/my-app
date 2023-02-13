@@ -1,11 +1,33 @@
-section {
+:host {
+  display: block;
   box-sizing: border-box;
   min-height: 100%;
-  padding: 26px 14px 13px 26px;
   position: relative;
 }
 
-section::before {
+header {
+  display: flex;
+  padding: 26px 14px 16px 26px;
+  border-bottom: 1px solid rgba(169, 187, 198, 0.4);
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+mat-dialog-content {
+  padding: 24px 14px 12px 26px !important;
+}
+
+h2.mdc-dialog__title {
+  position: static !important;
+}
+
+h2.mdc-dialog__title::before {
+  width: 100%;
+}
+
+h2::before {
   content: "";
   position: absolute;
   height: 8px;
@@ -15,18 +37,165 @@ section::before {
   border-radius: 4px 4px 0px 0px;
 }
 
+h2.mdc-dialog__title {
+  font-size: 14px;
+  line-height: 150%;
+  color: rgba(0, 32, 51, 0.6);
+  padding: 0 !important;
+  text-transform: uppercase;
+}
+
 .low::before {
   background: #0aee29;
+}
+
+span.low {
+  color: #0aee29;
 }
 
 .mid::before {
   background: #89258b;
 }
 
+span.mid {
+  color: #89258b;
+}
+
 .high::before {
   background: #ffa429;
 }
 
+span.high {
+  color: #ffa429;
+}
+
 .critical::before {
   background: #fb0202;
+}
+
+span.critical {
+  color: #fb0202;
+}
+
+.status button,
+mat-dialog-content button {
+  padding: 0px 0px 0px 7px;
+  height: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 66, 105, 0.28);
+  border-radius: 4px;
+  width: 163px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #002033;
+  text-align: start;
+  transition: all 0.3s;
+  position: relative;
+  cursor: pointer;
+}
+
+.status button:hover {
+  background: rgba(214, 228, 235, 0.28);
+}
+
+.status button::after,
+mat-dialog-content button::after {
+  position: absolute;
+  content: "";
+  width: 8px;
+  height: 4.5px;
+  background-image: url("../../../../assets/img/todo/statusChoseEditIcon.svg");
+  background-repeat: no-repeat;
+  right: 10px;
+  top: 10px;
+}
+
+mat-dialog-content button::after {
+  top: 17px;
+}
+
+.status .statusName {
+  box-sizing: border-box;
+  border: 1px solid #56b9f2;
+  width: fit-content;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 0px 12px;
+  height: 24px;
+  font-size: 12px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #32b4ff;
+}
+
+header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-dialog-content button {
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 150%;
+  padding: 8px 0px 8px 11px;
+}
+
+mat-dialog-content .users-btn {
+  padding-left: 37px;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+mat-dialog-content h1 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 150%;
+  color: #002033;
+}
+
+mat-dialog-content div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#comment {
+  box-sizing: border-box;
+  padding: 11px 13px;
+  width: 480px;
+  height: 146px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 66, 105, 0.28);
+  border-radius: 4px;
+  resize: none;
+}
+
+mat-dialog-content .users-btn > img {
+  position: absolute;
+  left: 8px;
+  top: 7px;
+  border-radius: 50%;
+}
+
+.mdc-dialog__actions {
+  /* margin */
+  justify-content: flex-end;
+  padding: 0px 14px 13px 26px !important;
+  gap: 12px !important;
+}
+
+.mdc-dialog__actions button {
+  font-size: 16px !important;
+  line-height: 40px !important;
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+  background-color: #0078d2 !important;
 }

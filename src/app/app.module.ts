@@ -13,6 +13,10 @@ import { WorkGroupComponent } from './component/work-group/work-group.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EditDialogComponent } from './component/todo-component/edit-dialog/edit-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 registerLocaleData(localeRu);
 
@@ -23,6 +27,7 @@ registerLocaleData(localeRu);
     MainComponent,
     TodoComponentComponent,
     WorkGroupComponent,
+    EditDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,9 @@ registerLocaleData(localeRu);
     BrowserAnimationsModule,
     DragDropModule,
     MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

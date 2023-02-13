@@ -30,15 +30,21 @@ export class TodoComponentComponent implements OnChanges {
   }
 
   onOpenDialog() {
+    let taskCopy = { ...this.task };
     const dialogRef = this.dialog.open(EditDialogComponent, {
       width: '520px',
       height: '577px',
       restoreFocus: false,
+      backdropClass: 'bg',
+      panelClass: 'taskDialog',
+      autoFocus: 'first-header',
+      data: taskCopy,
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       // this.onChangeTask.emit(result);
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        console.log(`Dialog result: ${result}`);
+      }
     });
   }
 }

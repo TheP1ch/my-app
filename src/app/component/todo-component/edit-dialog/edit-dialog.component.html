@@ -1,3 +1,110 @@
-<section class="low">
-  <button (click)="closeDialog()">Отмена</button>
-</section>
+<header>
+  <div>
+    <h2 mat-dialog-title class="low">Редактирование заявки</h2>
+    <button
+      mat-icon-button
+      aria-label="icon button with a vertical three dot icon"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+
+  <div class="status">
+    <button [matMenuTriggerFor]="statues" type="button">Статус заявки</button>
+    <mat-menu #statues="matMenu">
+      <ng-container *ngFor="let status of statuses">
+        <button mat-menu-item (click)="changeStatus(status.id)">
+          {{ status.name }}
+        </button>
+      </ng-container>
+    </mat-menu>
+    <p class="statusName">{{ allStatuses[data.statusNumber].name }}</p>
+  </div>
+</header>
+
+<mat-dialog-content>
+  <h1>Корректировка значений по ВКУ-321</h1>
+
+  <div>
+    <span>Приоритет:</span>
+    <button
+      [matMenuTriggerFor]="priorities"
+      type="button"
+      class="priorities-btn"
+    >
+      <span
+        [ngClass]="{
+          low: data.priorityId === 0,
+          mid: data.priorityId === 1,
+          high: data.priorityId === 2,
+          critical: data.priorityId === 3
+        }"
+        >{{ allPriorities[data.priorityId].name }}</span
+      >
+    </button>
+    <mat-menu #priorities="matMenu">
+      <ng-container *ngFor="let priority of prioritiesFilter">
+        <button mat-menu-item (click)="changePriority(priority.id)">
+          <span
+            [ngClass]="{
+              low: priority.id === 0,
+              mid: priority.id === 1,
+              high: priority.id === 2,
+              critical: priority.id === 3
+            }"
+            >{{ priority.name }}</span
+          >
+        </button>
+      </ng-container>
+    </mat-menu>
+  </div>
+
+  <div>
+    <span>Исполнитель:</span>
+    <button [matMenuTriggerFor]="users" type="button" class="users-btn">
+      <ng-container *ngIf="userFind != undefined">
+        <img
+          [src]="userFind.imgUrl"
+          alt="Фото пользователя"
+          width="24px"
+          height="24px"
+        />
+        <span>
+          {{ userFind.name }}
+        </span>
+      </ng-container>
+    </button>
+    <mat-menu #users="matMenu">
+      <ng-container *ngFor="let user of usersFilter">
+        <button mat-menu-item (click)="changeUser(user.id)">
+          <img
+            [src]="user.imgUrl"
+            alt="Фото пользователя"
+            width="24px"
+            height="24px"
+          />
+          <span>{{ user.name }}</span>
+        </button>
+      </ng-container>
+    </mat-menu>
+  </div>
+
+  <div>
+    <span>Комментарий:</span>
+    <textarea id="comment" name="comment" maxlength="446"></textarea>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button class="exit-dialog" (click)="closeDialog()">
+    Отменить
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="save-info"
+    (click)="saveData()"
+  >
+    Сохранить
+  </button>
+</mat-dialog-actions>

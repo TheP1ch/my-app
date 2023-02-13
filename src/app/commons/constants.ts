@@ -8,8 +8,18 @@ export const Users: User[] = [
     imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
   },
   {
-    id: 0,
-    name: 'Иван Васильевич',
+    id: 1,
+    name: 'Иван Василь',
+    imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
+  },
+  {
+    id: 2,
+    name: 'Иван Ва',
+    imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
+  },
+  {
+    id: 3,
+    name: 'Иван Васи',
     imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
   },
 ];
@@ -67,6 +77,7 @@ export const Tasks: Task[] = [
     priorityId: 3,
     statusNumber: 0,
     statusPosition: 1,
+    comment: '',
   },
   {
     id: 0,
@@ -74,10 +85,11 @@ export const Tasks: Task[] = [
     price: 2500,
     lastUpdateDate: new Date(Date.now() - 691200000),
     createDate: new Date(),
-    userId: 0,
+    userId: 10,
     priorityId: 0,
     statusNumber: 0,
     statusPosition: 0,
+    comment: '',
   },
   {
     id: 3,
@@ -89,6 +101,7 @@ export const Tasks: Task[] = [
     priorityId: 0,
     statusNumber: 2,
     statusPosition: 0,
+    comment: '',
   },
   {
     id: 4,
@@ -100,6 +113,7 @@ export const Tasks: Task[] = [
     priorityId: 2,
     statusNumber: 3,
     statusPosition: 0,
+    comment: '',
   },
   {
     id: 5,
@@ -111,6 +125,7 @@ export const Tasks: Task[] = [
     priorityId: 2,
     statusNumber: 4,
     statusPosition: 0,
+    comment: '',
   },
   {
     id: 2,
@@ -122,5 +137,6 @@ export const Tasks: Task[] = [
     priorityId: 1,
     statusNumber: 1,
     statusPosition: 0,
+    comment: '',
   },
 ];
