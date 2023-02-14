@@ -21,17 +21,19 @@
         drop($event, getTasksCertainGroup(tasksData, status.id))
       "
     >
-      <h3>
-        {{ status.name | uppercase }}
-        <div class="countDeals">
-          {{ getTasksCertainGroup(tasksData, status.id).length }}
-        </div>
-      </h3>
+      <div class="statusColumn__header">
+        <h3>
+          {{ status.name | uppercase }}
+          <div class="countDeals">
+            {{ getTasksCertainGroup(tasksData, status.id).length }}
+          </div>
+        </h3>
 
-      <p class="sum">
-        {{ sumCalculation(getTasksCertainGroup(tasksData, status.id)) }} ₽
-      </p>
-      <button type="button" class="addTodoIncoming"></button>
+        <p class="sum">
+          {{ sumCalculation(getTasksCertainGroup(tasksData, status.id)) }} ₽
+        </p>
+        <button type="button" class="addTodoIncoming"></button>
+      </div>
       <app-todo-component
         *ngFor="let task of getTasksCertainGroup(tasksData, status.id)"
         [task]="task"

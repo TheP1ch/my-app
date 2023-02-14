@@ -37,6 +37,12 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
   // вернет Map в котором ключ это номер группы, а Task[] это задачи принадлежащие этой группе
   tasksData: Map<number, Task[]>;
 
+  public getConnectedStatuses(statusId: number): string[] {
+    return this.statuses
+      .filter((status) => status.id !== statusId)
+      .map((status) => `status-${status.id}`);
+  }
+
   getTasksCertainGroup(
     allTasks: Map<number, Task[]> | null,
     statusNumber: number

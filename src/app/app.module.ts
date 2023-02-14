@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AddTodoComponent } from './component/work-group/add-todo/add-todo.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 registerLocaleData(localeRu);
 
@@ -43,6 +44,7 @@ registerLocaleData(localeRu);
     MatIconModule,
     MatMenuModule,
     CommonModule,
+    ScrollingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

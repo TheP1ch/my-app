@@ -34,15 +34,6 @@ body {
   line-height: 25px;
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 .bg {
   background-color: rgba(0, 0, 0, 0.5);
 }
