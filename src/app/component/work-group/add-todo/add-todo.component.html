@@ -3,13 +3,13 @@
     <h2
       mat-dialog-title
       [ngClass]="{
-        low: data.priorityId === 0,
-        mid: data.priorityId === 1,
-        high: data.priorityId === 2,
-        critical: data.priorityId === 3
+        low: task.priorityId === 0,
+        mid: task.priorityId === 1,
+        high: task.priorityId === 2,
+        critical: task.priorityId === 3
       }"
     >
-      Редактирование заявки
+      Добавление сделки
     </h2>
     <button
       mat-icon-button
@@ -23,17 +23,39 @@
     <button [matMenuTriggerFor]="statues" type="button">Статус заявки</button>
     <mat-menu #statues="matMenu">
       <ng-container *ngFor="let status of statuses">
-        <button mat-menu-item (click)="changeStatus(status.id)">
+        <button mat-menu-item (click)="setStatus(status.id)">
           {{ status.name }}
         </button>
       </ng-container>
     </mat-menu>
-    <p class="statusName">{{ allStatuses[data.statusNumber].name }}</p>
+    <p class="statusName">{{ allStatuses[task.statusNumber].name }}</p>
   </div>
 </header>
 
 <mat-dialog-content>
-  <h1>{{ data.name }}</h1>
+  <h1>{{ taskName }}</h1>
+
+  <div>
+    <span>Название сделки:</span>
+    <input
+      type="text"
+      class="nameInput"
+      placeholder="Введите название задачи"
+      #nameInput
+      [(ngModel)]="taskName"
+    />
+  </div>
+
+  <div>
+    <span>Стоимость сделки:</span>
+    <input
+      type="number"
+      class="priceInput"
+      placeholder="Введите стоимость задачи"
+      #nameInput
+      [(ngModel)]="taskPrice"
+    />
+  </div>
 
   <div>
     <span>Приоритет:</span>
@@ -44,17 +66,17 @@
     >
       <span
         [ngClass]="{
-          low: data.priorityId === 0,
-          mid: data.priorityId === 1,
-          high: data.priorityId === 2,
-          critical: data.priorityId === 3
+          low: task.priorityId === 0,
+          mid: task.priorityId === 1,
+          high: task.priorityId === 2,
+          critical: task.priorityId === 3
         }"
-        >{{ allPriorities[data.priorityId].name }}</span
+        >{{ allPriorities[task.priorityId].name }}</span
       >
     </button>
     <mat-menu #priorities="matMenu">
       <ng-container *ngFor="let priority of prioritiesFilter">
-        <button mat-menu-item (click)="changePriority(priority.id)">
+        <button mat-menu-item (click)="setPriority(priority.id)">
           <span
             [ngClass]="{
               low: priority.id === 0,
@@ -72,7 +94,7 @@
   <div>
     <span>Исполнитель:</span>
     <button [matMenuTriggerFor]="users" type="button" class="users-btn">
-      <ng-container *ngIf="userFind != undefined">
+      <ng-container *ngIf="userFind !== undefined">
         <img
           [src]="userFind.imgUrl"
           alt="Фото пользователя"
@@ -86,7 +108,7 @@
     </button>
     <mat-menu #users="matMenu">
       <ng-container *ngFor="let user of usersFilter">
-        <button mat-menu-item (click)="changeUser(user.id)">
+        <button mat-menu-item (click)="setUser(user.id)">
           <img
             [src]="user.imgUrl"
             alt="Фото пользователя"
@@ -97,13 +119,6 @@
         </button>
       </ng-container>
     </mat-menu>
-  </div>
-
-  <div>
-    <span>Комментарий:</span>
-    <textarea #commentArea id="comment" name="comment" maxlength="446">{{
-      data.comment
-    }}</textarea>
   </div>
 </mat-dialog-content>
 

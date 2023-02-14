@@ -51,6 +51,8 @@
 
 .groupSector__link {
   line-height: 140%;
+  text-decoration: none;
+  color: inherit;
 }
 
 .groupSector__link_active {

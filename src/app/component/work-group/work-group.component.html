@@ -1,6 +1,8 @@
 <header>
   <h2>Заявки</h2>
-  <button type="button" class="addTodo"><span>Добавить сделку</span></button>
+  <button type="button" class="addTodo" (click)="onOpenAddDialog()">
+    <span>Добавить сделку</span>
+  </button>
   <div class="search">
     <input type="text" class="searchTerm" placeholder="Поиск" #searchInput />
     <button type="reset" (click)="clearInput()"></button>

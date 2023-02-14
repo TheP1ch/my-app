@@ -37,8 +37,7 @@ export class EditDialogComponent {
   public readonly allUsers = Users;
 
   public usersFilter = this.allUsers.filter((user) => {
-    if (user.id === this.data.userId || this.data.userId === undefined)
-      return false;
+    if (user.id === this.data.userId) return false;
     return true;
   });
 
@@ -81,8 +80,7 @@ export class EditDialogComponent {
     this.userFind = this.allUsers[userId];
     this.data.userId = userId;
     this.usersFilter = this.allUsers.filter((user) => {
-      if (user.id === this.data.userId || this.data.userId === undefined)
-        return false;
+      if (user.id === this.data.userId) return false;
       return true;
     });
   }

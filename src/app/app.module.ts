@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './component/header/header.component';
+import { HeaderComponent } from './pageComponent/header/header.component';
 import { MainComponent } from './pageComponent/main/main.component';
 import { TodoComponentComponent } from './component/todo-component/todo-component.component';
 import { WorkGroupComponent } from './component/work-group/work-group.component';
@@ -17,6 +18,7 @@ import { EditDialogComponent } from './component/todo-component/edit-dialog/edit
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { AddTodoComponent } from './component/work-group/add-todo/add-todo.component';
 
 registerLocaleData(localeRu);
 
@@ -28,6 +30,7 @@ registerLocaleData(localeRu);
     TodoComponentComponent,
     WorkGroupComponent,
     EditDialogComponent,
+    AddTodoComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ registerLocaleData(localeRu);
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

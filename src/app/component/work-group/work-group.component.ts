@@ -14,10 +14,12 @@ import {
   OnInit,
   OnDestroy,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { lastValueFrom, map, Subscription } from 'rxjs';
 import { Statuses } from '../../commons/constants';
 import { Task } from '../../commons/interfaces';
 import { TaskServiceService } from '../../services/task-service.service';
+import { AddTodoComponent } from './add-todo/add-todo.component';
 
 @Component({
   selector: 'app-work-group',
@@ -28,7 +30,10 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
   @ViewChild('searchInput', { static: false }) searchInput: ElementRef;
   private subscribeTaskService: Subscription;
   public statuses = Statuses;
-  constructor(private taskService: TaskServiceService) {}
+  constructor(
+    private taskService: TaskServiceService,
+    private dialog: MatDialog
+  ) {}
   // вернет Map в котором ключ это номер группы, а Task[] это задачи принадлежащие этой группе
   tasksData: Map<number, Task[]>;
 
@@ -114,5 +119,25 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
         }
       }
     }
+  }
+
+  onOpenAddDialog() {
+    const dialogRef = this.dialog.open(AddTodoComponent, {
+      width: '520px',
+      height: '577px',
+      restoreFocus: false,
+      backdropClass: 'bg',
+      panelClass: 'taskDialog',
+      autoFocus: 'first-header',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(result);
+        this.tasksData.get(result.statusNumber)?.unshift(result);
+        this.tasksData.get(result.statusNumber)?.forEach((item, index) => {
+          item.statusPosition = index;
+        });
+      }
+    });
   }
 }
