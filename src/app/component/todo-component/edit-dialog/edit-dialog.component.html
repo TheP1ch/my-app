@@ -91,7 +91,9 @@
 
   <div>
     <span>Комментарий:</span>
-    <textarea id="comment" name="comment" maxlength="446"></textarea>
+    <textarea #commentArea id="comment" name="comment" maxlength="446">{{
+      data.comment
+    }}</textarea>
   </div>
 </mat-dialog-content>
 

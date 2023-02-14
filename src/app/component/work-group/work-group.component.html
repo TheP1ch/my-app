@@ -33,7 +33,9 @@
       <app-todo-component
         *ngFor="let task of getTasksCertainGroup(tasksData, status.id)"
         [task]="task"
+        [previousStatus]="task.statusNumber"
         cdkDrag
+        (onChangeTask)="updateTasks($event)"
       ></app-todo-component>
     </div>
   </ng-container>

@@ -6,6 +6,8 @@ import {
   DoCheck,
   OnChanges,
   SimpleChanges,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Priorities, Statuses, Users } from 'src/app/commons/constants';
@@ -17,6 +19,7 @@ import { Task, User } from 'src/app/commons/interfaces';
   styleUrls: ['./edit-dialog.component.css'],
 })
 export class EditDialogComponent {
+  @ViewChild('commentArea', { static: false }) commentArea: ElementRef;
   public readonly allStatuses = Statuses;
 
   public statuses = this.allStatuses.filter((status) => {
@@ -54,6 +57,7 @@ export class EditDialogComponent {
   }
 
   saveData() {
+    this.data.comment = this.commentArea.nativeElement.value;
     this.dialogRef.close(this.data);
   }
 
@@ -63,7 +67,6 @@ export class EditDialogComponent {
       if (status.id === this.data.statusNumber) return false;
       return true;
     });
-    console.log(this.data);
   }
 
   changePriority(priorityId: number): void {
@@ -72,7 +75,6 @@ export class EditDialogComponent {
       if (priority.id === this.data.priorityId) return false;
       return true;
     });
-    console.log(this.data);
   }
 
   changeUser(userId: number): void {
@@ -83,6 +85,5 @@ export class EditDialogComponent {
         return false;
       return true;
     });
-    console.log(this.data);
   }
 }

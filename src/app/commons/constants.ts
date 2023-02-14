@@ -77,7 +77,6 @@ export const Tasks: Task[] = [
     priorityId: 3,
     statusNumber: 0,
     statusPosition: 1,
-    comment: '',
   },
   {
     id: 0,
@@ -89,7 +88,6 @@ export const Tasks: Task[] = [
     priorityId: 0,
     statusNumber: 0,
     statusPosition: 0,
-    comment: '',
   },
   {
     id: 3,
@@ -101,7 +99,6 @@ export const Tasks: Task[] = [
     priorityId: 0,
     statusNumber: 2,
     statusPosition: 0,
-    comment: '',
   },
   {
     id: 4,
@@ -113,7 +110,6 @@ export const Tasks: Task[] = [
     priorityId: 2,
     statusNumber: 3,
     statusPosition: 0,
-    comment: '',
   },
   {
     id: 5,
@@ -125,7 +121,6 @@ export const Tasks: Task[] = [
     priorityId: 2,
     statusNumber: 4,
     statusPosition: 0,
-    comment: '',
   },
   {
     id: 2,
@@ -137,6 +132,5 @@ export const Tasks: Task[] = [
     priorityId: 1,
     statusNumber: 1,
     statusPosition: 0,
-    comment: '',
   },
 ];

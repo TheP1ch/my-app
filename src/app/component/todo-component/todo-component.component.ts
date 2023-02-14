@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnChanges,
@@ -19,14 +20,15 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 })
 export class TodoComponentComponent implements OnChanges {
   @Input() public task: Task;
-  @Output() onChangeTask: EventEmitter<Task> = new EventEmitter<Task>();
+  @Input() public previousStatus: number;
+  @Output() onChangeTask: EventEmitter<[number, Task]> = new EventEmitter<
+    [number, Task]
+  >();
   constructor(private dialog: MatDialog) {}
 
   user: User | undefined;
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['task']) {
-      this.user = Users.find((user) => user.id === this.task?.userId);
-    }
+    this.user = Users.find((user) => user.id === this.task?.userId);
   }
 
   onOpenDialog() {
@@ -41,9 +43,9 @@ export class TodoComponentComponent implements OnChanges {
       data: taskCopy,
     });
     dialogRef.afterClosed().subscribe((result) => {
-      // this.onChangeTask.emit(result);
       if (result) {
-        console.log(`Dialog result: ${result}`);
+        this.onChangeTask.emit([this.previousStatus, result]);
+        this.user = Users.find((user) => user.id === result.userId);
       }
     });
   }
