@@ -58,6 +58,9 @@
 }
 
 .groupSector__link input {
+  box-sizing: border-box;
+  padding: 0px 5px;
+  width: 170px;
   border: none;
   cursor: pointer;
   line-height: 140%;
@@ -68,6 +71,11 @@
 
 .groupSector__link input:disabled {
   background-color: transparent;
+}
+
+.groupSector__link input:not(:read-only) {
+  border-radius: 4px;
+  outline: 1px solid rgba(0, 66, 105, 0.28);
 }
 
 .groupSector__link_active input {
