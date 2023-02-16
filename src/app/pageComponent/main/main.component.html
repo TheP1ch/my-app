@@ -1,7 +1,11 @@
 <section class="leftSide">
   <div class="groupSector">
     <ng-container *ngFor="let workGroup of workGroups">
-      <a [routerLink]="['/work-group', workGroup.id]" class="groupSector__link">
+      <a
+        routerLinkActive="groupSector__link_active"
+        [routerLink]="['/work-group', workGroup.id]"
+        class="groupSector__link"
+      >
         <input type="text" [(ngModel)]="workGroup.name" />
       </a>
     </ng-container>
