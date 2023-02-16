@@ -53,6 +53,8 @@
   line-height: 140%;
   text-decoration: none;
   color: inherit;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .groupSector__link input {

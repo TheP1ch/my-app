@@ -23,8 +23,11 @@ export class MainComponent {
   }
 
   enableInput(target: any) {
-    target.readOnly = !target.readOnly;
-    target.focus();
+    if (target.readOnly) {
+      target.readOnly = !target.readOnly;
+      target.focus();
+      target.select();
+    }
   }
 
   disableInput(target: any) {
