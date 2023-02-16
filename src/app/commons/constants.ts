@@ -1,6 +1,11 @@
 import { Task } from './interfaces';
 import { User } from './interfaces';
 
+export const WorkGroups: { id: number; name?: string }[] = [
+  { id: 1 },
+  { id: 2 },
+];
+
 export const Users: User[] = [
   {
     id: 0,
@@ -68,6 +73,7 @@ export const Priorities = [
 
 export const Tasks: Task[] = [
   {
+    workGroupId: 2,
     id: 1,
     name: 'Ошибка датчика КП-312',
     price: 2500,
@@ -79,6 +85,7 @@ export const Tasks: Task[] = [
     statusPosition: 1,
   },
   {
+    workGroupId: 2,
     id: 0,
     name: 'Обновление ПО',
     price: 2500,
@@ -90,6 +97,7 @@ export const Tasks: Task[] = [
     statusPosition: 0,
   },
   {
+    workGroupId: 2,
     id: 3,
     name: 'Тех обслуживание насоса ВР-231',
     price: 500,
@@ -101,6 +109,7 @@ export const Tasks: Task[] = [
     statusPosition: 0,
   },
   {
+    workGroupId: 2,
     id: 4,
     name: 'Корректировка значений по ВКУ-321',
     price: 500,
@@ -112,6 +121,7 @@ export const Tasks: Task[] = [
     statusPosition: 0,
   },
   {
+    workGroupId: 1,
     id: 5,
     name: 'Поверка датчиков на УПН-231',
     price: 2500,
@@ -123,6 +133,7 @@ export const Tasks: Task[] = [
     statusPosition: 0,
   },
   {
+    workGroupId: 1,
     id: 2,
     name: 'Подключение системы',
     price: 1700,

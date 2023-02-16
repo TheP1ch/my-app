@@ -94,6 +94,7 @@ button[type="reset"] {
   color: rgba(0, 57, 92, 0.8);
   margin-left: 4px;
   cursor: pointer;
+  position: relative;
 }
 
 main {
@@ -195,4 +196,55 @@ main h3 {
 .statusColumn.cdk-drop-list-dragging
   app-todo-component:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+span.low {
+  color: #0aee29;
+}
+
+span.mid {
+  color: #89258b;
+}
+
+span.high {
+  color: #ffa429;
+}
+
+span.critical {
+  color: #fb0202;
+}
+
+.filterButton::after {
+  box-sizing: border-box;
+  position: absolute;
+  width: 32px;
+  height: 24px;
+  content: "4";
+  padding: 0 12px;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+  background: #ff4443;
+  border-radius: 50px;
+  top: 8px;
+  right: 16px;
+  color: #fafafa;
+}
+
+.mat-mdc-menu-item.active::after {
+  box-sizing: border-box;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  content: "";
+  padding: 0 12px;
+  background-image: url("../../../assets/img/workGroup/checkmark_120290.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 50%;
+  right: 40px;
+  color: #fafafa;
 }

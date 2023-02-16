@@ -55,6 +55,14 @@
   color: inherit;
 }
 
+.groupSector__link input {
+  border: none;
+  cursor: pointer;
+  line-height: 140%;
+  font-size: 16px;
+  color: rgba(0, 32, 51, 0.6);
+}
+
 .groupSector__link_active {
   font-weight: 700;
 }

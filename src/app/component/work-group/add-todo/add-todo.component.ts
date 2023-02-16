@@ -10,6 +10,7 @@ import { Task, User } from 'src/app/commons/interfaces';
 })
 export class AddTodoComponent {
   private _task: Task = {
+    workGroupId: this.data,
     id: Tasks.length,
     name: '',
     price: 0,
@@ -78,7 +79,10 @@ export class AddTodoComponent {
     });
   }
 
-  constructor(public dialogRef: MatDialogRef<AddTodoComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<AddTodoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: number
+  ) {}
 
   closeDialog() {
     this.dialogRef.close();

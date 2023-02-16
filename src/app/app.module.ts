@@ -20,6 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AddTodoComponent } from './component/work-group/add-todo/add-todo.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
+import { FilterByPriorityPipe } from './pipes/filter-by-priority.pipe';
 
 registerLocaleData(localeRu);
 
@@ -32,6 +34,8 @@ registerLocaleData(localeRu);
     WorkGroupComponent,
     EditDialogComponent,
     AddTodoComponent,
+    FilterByNamePipe,
+    FilterByPriorityPipe,
   ],
   imports: [
     BrowserModule,

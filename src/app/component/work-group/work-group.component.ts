@@ -15,8 +15,9 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { lastValueFrom, map, Subscription } from 'rxjs';
-import { Statuses } from '../../commons/constants';
+import { ActivatedRoute } from '@angular/router';
+import { filter, lastValueFrom, map, Subscription } from 'rxjs';
+import { Priorities, Statuses } from '../../commons/constants';
 import { Task } from '../../commons/interfaces';
 import { TaskServiceService } from '../../services/task-service.service';
 import { AddTodoComponent } from './add-todo/add-todo.component';
@@ -29,10 +30,16 @@ import { AddTodoComponent } from './add-todo/add-todo.component';
 export class WorkGroupComponent implements OnInit, OnDestroy {
   @ViewChild('searchInput', { static: false }) searchInput: ElementRef;
   private subscribeTaskService: Subscription;
+  private subscribeRoute: Subscription;
   public statuses = Statuses;
+  searchByName = '';
+  filterByPriorityId: number;
+  workGroupId: number;
+  public readonly allPriorities = Priorities;
   constructor(
     private taskService: TaskServiceService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route: ActivatedRoute
   ) {}
   // вернет Map в котором ключ это номер группы, а Task[] это задачи принадлежащие этой группе
   tasksData: Map<number, Task[]>;
@@ -53,7 +60,7 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
   }
 
   clearInput() {
-    this.searchInput.nativeElement.value = '';
+    this.searchByName = '';
     this.searchInput.nativeElement.focus();
   }
 
@@ -83,17 +90,20 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
     this.tasksData?.get(currentStatusNumber)?.forEach((item, index) => {
       item.statusPosition = index;
     });
-    console.log(this.tasksData);
   }
 
   ngOnInit(): void {
-    this.subscribeTaskService = this.taskService.taskMap.subscribe(
-      (data) => (this.tasksData = data)
-    );
-    console.log('ho');
+    this.subscribeRoute = this.route.params.subscribe((params) => {
+      this.workGroupId = +params['id'];
+      this.subscribeTaskService = this.taskService
+        .getTasksMapByWorkGroupId(this.workGroupId)
+        .subscribe((data) => (this.tasksData = data));
+    });
   }
 
   ngOnDestroy(): void {
+    console.log(this.workGroupId);
+    this.subscribeRoute.unsubscribe();
     this.subscribeTaskService.unsubscribe();
   }
 
@@ -135,6 +145,7 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
       backdropClass: 'bg',
       panelClass: 'taskDialog',
       autoFocus: 'first-header',
+      data: this.workGroupId,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

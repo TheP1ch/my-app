@@ -1,8 +1,12 @@
 <section class="leftSide">
   <div class="groupSector">
-    <a routerLink="" class="groupSector__link">Рабочая группа 1</a>
-    <a class="groupSector__link groupSector__link_active">Рабочая группа 2</a>
-    <button class="addGroupButton" type="button">
+    <ng-container *ngFor="let workGroup of workGroups">
+      <a [routerLink]="['/work-group', workGroup.id]" class="groupSector__link">
+        <input type="text" [(ngModel)]="workGroup.name" />
+      </a>
+    </ng-container>
+    <!-- groupSector__link_active -->
+    <button class="addGroupButton" type="button" (click)="AddWorkGroup()">
       <span>Добавить группу</span>
     </button>
   </div>
@@ -10,5 +14,5 @@
   <a class="leftSide__menuSettings">Настройки меню</a>
 </section>
 <section class="mainPart">
-  <app-work-group></app-work-group>
+  <router-outlet></router-outlet>
 </section>

@@ -4,11 +4,41 @@
     <span>Добавить сделку</span>
   </button>
   <div class="search">
-    <input type="text" class="searchTerm" placeholder="Поиск" #searchInput />
+    <input
+      type="text"
+      class="searchTerm"
+      placeholder="Поиск"
+      #searchInput
+      [(ngModel)]="searchByName"
+    />
     <button type="reset" (click)="clearInput()"></button>
     <button type="button" class="searchButton"></button>
   </div>
-  <button type="button" class="filterButton"><span>Фильтры</span></button>
+  <button type="button" class="filterButton" [matMenuTriggerFor]="priorities">
+    <span>Фильтры</span>
+  </button>
+  <mat-menu #priorities="matMenu">
+    <ng-container *ngFor="let priority of allPriorities">
+      <button
+        mat-menu-item
+        (click)="filterByPriorityId = priority.id"
+        [class.active]="filterByPriorityId === priority.id"
+      >
+        <span
+          [ngClass]="{
+            low: priority.id === 0,
+            mid: priority.id === 1,
+            high: priority.id === 2,
+            critical: priority.id === 3
+          }"
+          >{{ priority.name }}</span
+        >
+      </button>
+    </ng-container>
+    <button mat-menu-item (click)="filterByPriorityId = allPriorities.length">
+      Сбросить Фильтры
+    </button>
+  </mat-menu>
 </header>
 
 <main cdkDropListGroup>
@@ -35,7 +65,11 @@
         <button type="button" class="addTodoIncoming"></button>
       </div>
       <app-todo-component
-        *ngFor="let task of getTasksCertainGroup(tasksData, status.id)"
+        *ngFor="
+          let task of getTasksCertainGroup(tasksData, status.id)
+            | filterByName : searchByName
+            | filterByPriority : filterByPriorityId
+        "
         [task]="task"
         [previousStatus]="task.statusNumber"
         cdkDrag
