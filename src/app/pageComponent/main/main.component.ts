@@ -23,17 +23,13 @@ export class MainComponent {
   }
 
   enableInput(target: any) {
-    console.log(target.readOnly, 'dbl');
     target.readOnly = !target.readOnly;
     target.focus();
-    console.log(target.readOnly, 'exit dbl');
   }
 
   disableInput(target: any) {
-    console.log(target.readOnly, 'disable');
     if (!target.readOnly) {
       target.readOnly = !target.readOnly;
     }
-    console.log(target.readOnly, 'exit disable');
   }
 }
