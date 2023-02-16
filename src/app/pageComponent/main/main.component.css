@@ -64,6 +64,10 @@
   outline: none;
 }
 
+.groupSector__link input:disabled {
+  background-color: transparent;
+}
+
 .groupSector__link_active input {
   font-weight: 700;
 }

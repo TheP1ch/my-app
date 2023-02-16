@@ -6,7 +6,14 @@
         [routerLink]="['/work-group', workGroup.id]"
         class="groupSector__link"
       >
-        <input type="text" [(ngModel)]="workGroup.name" />
+        <input
+          type="text"
+          [(ngModel)]="workGroup.name"
+          readonly="true"
+          (blur)="disableInput($event.target)"
+          (dblclick)="enableInput($event.target)"
+          #nameInput
+        />
       </a>
     </ng-container>
     <!-- groupSector__link_active -->
