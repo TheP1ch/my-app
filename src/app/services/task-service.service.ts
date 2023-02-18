@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, filter, map, Observable } from 'rxjs';
-import { Tasks } from '../commons/constants';
+import { Tasks, WorkGroups } from '../commons/constants';
 import { Task } from '../commons/interfaces';
 import { Statuses } from '../commons/constants';
 
@@ -11,21 +11,13 @@ export class TaskServiceService {
   private readonly _tasks$: BehaviorSubject<Task[]> = new BehaviorSubject(
     Tasks
   );
-  // public taskMap: Observable<Map<number, Task[]>> = this._tasks$.pipe(
-  //   map((tasks) => {
-  //     console.log(this._tasks$);
-  //     let result: Map<number, Task[]> = new Map<number, Task[]>();
-  //     for (let task of tasks) {
-  //       if (result.has(task.statusNumber)) {
-  //         result.get(task.statusNumber)?.push(task);
-  //       } else {
-  //         result.set(task.statusNumber, [task]);
-  //       }
-  //     }
-  //     console.log(result);
-  //     return result;
-  //   })
-  // );
+
+  checkWorkGroupId(workGroupId: number): boolean {
+    if (WorkGroups.find((item) => item.id === workGroupId)) {
+      return true;
+    }
+    return false;
+  }
 
   getTasksMapByWorkGroupId(
     workGroupId: number

@@ -46,3 +46,7 @@ mat-dialog-container .mdc-dialog__surface {
 .mat-mdc-menu-item {
   min-height: 25px !important;
 }
+
+button {
+  outline: none;
+}

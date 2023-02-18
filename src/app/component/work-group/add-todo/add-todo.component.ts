@@ -10,7 +10,7 @@ import { Task, User } from 'src/app/commons/interfaces';
 })
 export class AddTodoComponent {
   private _task: Task = {
-    workGroupId: this.data,
+    workGroupId: this.data.workGroupId,
     id: Tasks.length,
     name: '',
     price: 0,
@@ -30,6 +30,8 @@ export class AddTodoComponent {
     if (status.id === this._task.statusNumber) return false;
     return true;
   });
+
+  public statusNumber: number;
 
   public readonly allPriorities = Priorities;
 
@@ -81,8 +83,14 @@ export class AddTodoComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AddTodoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number
-  ) {}
+    @Inject(MAT_DIALOG_DATA)
+    public data: { workGroupId: number; statusNumber?: number }
+  ) {
+    if (data.statusNumber !== undefined) {
+      this.statusNumber = data.statusNumber;
+      this.task.statusNumber = data.statusNumber;
+    }
+  }
 
   closeDialog() {
     this.dialogRef.close();

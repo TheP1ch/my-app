@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { WorkGroups } from 'src/app/commons/constants';
 
 @Component({
@@ -14,12 +15,15 @@ export class MainComponent {
 
   @ViewChild('nameInput', { static: false }) nameInput: ElementRef;
 
+  constructor(private router: Router) {}
+
   AddWorkGroup() {
     this.workGroups.push({
       id: this.workGroups.length + 1,
       name: `Рабочая группа ${this.workGroups.length + 1}`,
     });
     console.log(this.workGroups);
+    this.router.navigate(['/work-group', this.workGroups.length]);
   }
 
   enableInput(target: any) {

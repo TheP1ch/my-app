@@ -62,7 +62,11 @@
         <p class="sum">
           {{ sumCalculation(getTasksCertainGroup(tasksData, status.id)) }} ₽
         </p>
-        <button type="button" class="addTodoIncoming"></button>
+        <button
+          type="button"
+          class="addTodoByStatus"
+          (click)="onOpenAddDialogByStatus(status.id)"
+        ></button>
       </div>
       <app-todo-component
         *ngFor="

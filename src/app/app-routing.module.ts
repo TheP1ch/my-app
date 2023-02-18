@@ -5,6 +5,7 @@ import { MainComponent } from './pageComponent/main/main.component';
 
 const routes: Routes = [
   { path: 'work-group/:id', component: WorkGroupComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

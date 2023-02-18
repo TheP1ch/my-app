@@ -94,6 +94,7 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeRoute = this.route.params.subscribe((params) => {
+      console.log(this.taskService.checkWorkGroupId(+params['id']));
       this.workGroupId = +params['id'];
       this.subscribeTaskService = this.taskService
         .getTasksMapByWorkGroupId(this.workGroupId)
@@ -145,7 +146,28 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
       backdropClass: 'bg',
       panelClass: 'taskDialog',
       autoFocus: 'first-header',
-      data: this.workGroupId,
+      data: { workGroupId: this.workGroupId },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(result);
+        this.tasksData.get(result.statusNumber)?.unshift(result);
+        this.tasksData.get(result.statusNumber)?.forEach((item, index) => {
+          item.statusPosition = index;
+        });
+      }
+    });
+  }
+
+  onOpenAddDialogByStatus(statusNumber: number) {
+    const dialogRef = this.dialog.open(AddTodoComponent, {
+      width: '520px',
+      height: '577px',
+      restoreFocus: false,
+      backdropClass: 'bg',
+      panelClass: 'taskDialog',
+      autoFocus: 'first-header',
+      data: { workGroupId: this.workGroupId, statusNumber: statusNumber },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

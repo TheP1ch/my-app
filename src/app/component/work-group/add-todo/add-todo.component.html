@@ -18,18 +18,27 @@
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
+  <ng-container *ngIf="statusNumber === undefined; else fixedStatus">
+    <div class="status">
+      <button [matMenuTriggerFor]="statues" type="button">Статус заявки</button>
+      <mat-menu #statues="matMenu">
+        <ng-container *ngFor="let status of statuses">
+          <button mat-menu-item (click)="setStatus(status.id)">
+            {{ status.name }}
+          </button>
+        </ng-container>
+      </mat-menu>
+      <p class="statusName">{{ allStatuses[task.statusNumber].name }}</p>
+    </div>
+  </ng-container>
 
-  <div class="status">
-    <button [matMenuTriggerFor]="statues" type="button">Статус заявки</button>
-    <mat-menu #statues="matMenu">
-      <ng-container *ngFor="let status of statuses">
-        <button mat-menu-item (click)="setStatus(status.id)">
-          {{ status.name }}
-        </button>
-      </ng-container>
-    </mat-menu>
-    <p class="statusName">{{ allStatuses[task.statusNumber].name }}</p>
-  </div>
+  <ng-template #fixedStatus>
+    <div class="status fixed">
+      <p class="fixed-status-name">
+        {{ allStatuses[task.statusNumber].name }}
+      </p>
+    </div>
+  </ng-template>
 </header>
 
 <mat-dialog-content>

@@ -171,7 +171,7 @@ main h3 {
   opacity: 0;
 }
 
-.addTodoIncoming {
+.addTodoByStatus {
   width: 32px;
   height: 32px;
   border-radius: 4px;
@@ -180,6 +180,7 @@ main h3 {
   background-image: url("../../../assets/img/workGroup/button+.svg");
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 .cdk-drag-animating {
