@@ -13,6 +13,7 @@
           maxlength="20"
           (blur)="disableInput($event.target)"
           (dblclick)="enableInput($event.target)"
+          (keydown)="exitInputbyEnter($event)"
           #nameInput
         />
       </a>

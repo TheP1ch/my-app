@@ -23,13 +23,9 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     //! add to localStorage **
     this.workGroupService.newData();
-    this.workGroupService._workGroups$.subscribe(
-      (data) =>
-        (this.workGroups = data.map((item) => {
-          item.name = `Рабочая группа ${item.id}`;
-          return item;
-        }))
-    );
+    this.workGroupService.workGroups$.subscribe((data) => {
+      this.workGroups = data;
+    });
   }
 
   AddWorkGroup() {
@@ -55,6 +51,15 @@ export class MainComponent implements OnInit {
   disableInput(target: any) {
     if (!target.readOnly) {
       target.readOnly = !target.readOnly;
+    }
+    console.log(this.workGroupService.workGroups);
+    //! add to localStorage **
+    this.workGroupService.newData();
+  }
+
+  exitInputbyEnter(event: KeyboardEvent) {
+    if (event.code === 'Enter') {
+      this.disableInput(event.target);
     }
   }
 }
