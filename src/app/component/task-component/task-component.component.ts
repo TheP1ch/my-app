@@ -14,11 +14,11 @@ import { Task, User } from '../../commons/interfaces';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 @Component({
-  selector: 'app-todo-component',
-  templateUrl: './todo-component.component.html',
-  styleUrls: ['./todo-component.component.css'],
+  selector: 'app-task-component',
+  templateUrl: './task-component.component.html',
+  styleUrls: ['./task-component.component.css'],
 })
-export class TodoComponentComponent implements OnChanges {
+export class TaskComponentComponent implements OnChanges {
   @Input() public task: Task;
   @Input() public previousStatus: number;
   @Output() onChangeTask: EventEmitter<[number, Task]> = new EventEmitter<

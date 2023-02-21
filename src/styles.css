@@ -50,3 +50,7 @@ mat-dialog-container .mdc-dialog__surface {
 button {
   outline: none;
 }
+
+/* body::-webkit-scrollbar {
+  height: 0px;
+} */

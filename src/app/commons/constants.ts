@@ -1,31 +1,28 @@
-import { Task } from './interfaces';
+import { Task, WorkGroup } from './interfaces';
 import { User } from './interfaces';
 
-export const WorkGroups: { id: number; name?: string }[] = [
-  { id: 1 },
-  { id: 2 },
-];
+export const WorkGroups: WorkGroup[] = [{ id: 1 }, { id: 2 }];
 
 export const Users: User[] = [
   {
     id: 0,
     name: 'Иван Васильевич',
-    imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
+    imgUrl: '../../assets/img/task/IvanVasilevich.svg',
   },
   {
     id: 1,
     name: 'Иван Василь',
-    imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
+    imgUrl: '../../assets/img/task/IvanVasilevich.svg',
   },
   {
     id: 2,
     name: 'Иван Ва',
-    imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
+    imgUrl: '../../assets/img/task/IvanVasilevich.svg',
   },
   {
     id: 3,
     name: 'Иван Васи',
-    imgUrl: '../../assets/img/todo/IvanVasilevich.svg',
+    imgUrl: '../../assets/img/task/IvanVasilevich.svg',
   },
 ];
 

@@ -17,3 +17,8 @@ export interface User {
   name: string;
   imgUrl: string;
 }
+
+export interface WorkGroup {
+  id: number;
+  name?: string;
+}

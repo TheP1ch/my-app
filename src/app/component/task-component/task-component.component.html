@@ -7,7 +7,7 @@
   }"
 >
   <header>
-    <div class="todoInfo">
+    <div class="taskInfo">
       <h3>{{ task.name }}</h3>
       <span class="price">{{ task.price }} ₽</span>
       <span>{{ task.createDate | date : "dd MMMM yyyy" : "" : "ru" }}</span>
@@ -40,7 +40,7 @@
 
   <footer>
     <span>Дела</span>
-    <button class="editTodoButton" (click)="onOpenDialog()" type="button">
+    <button class="editTaskButton" (click)="onOpenDialog()" type="button">
       <span>Редактировать</span>
     </button>
   </footer>

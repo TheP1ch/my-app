@@ -17,10 +17,10 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { filter, lastValueFrom, map, Subscription } from 'rxjs';
-import { Priorities, Statuses } from '../../commons/constants';
+import { Priorities, Statuses, Tasks } from '../../commons/constants';
 import { Task } from '../../commons/interfaces';
 import { TaskServiceService } from '../../services/task-service.service';
-import { AddTodoComponent } from './add-todo/add-todo.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 @Component({
   selector: 'app-work-group',
@@ -43,6 +43,23 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
   ) {}
   // вернет Map в котором ключ это номер группы, а Task[] это задачи принадлежащие этой группе
   tasksData: Map<number, Task[]>;
+
+  ngOnInit(): void {
+    this.subscribeRoute = this.route.params.subscribe((params) => {
+      //? add to localStorage **
+      this.taskService.newTasks();
+      console.log(this.taskService.checkWorkGroupId(+params['id']));
+      this.workGroupId = +params['id'];
+      this.subscribeTaskService = this.taskService
+        .getTasksMapByWorkGroupId(this.workGroupId)
+        .subscribe((data) => (this.tasksData = data));
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscribeRoute.unsubscribe();
+    this.subscribeTaskService.unsubscribe();
+  }
 
   public getConnectedStatuses(statusId: number): string[] {
     return this.statuses
@@ -90,22 +107,8 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
     this.tasksData?.get(currentStatusNumber)?.forEach((item, index) => {
       item.statusPosition = index;
     });
-  }
-
-  ngOnInit(): void {
-    this.subscribeRoute = this.route.params.subscribe((params) => {
-      console.log(this.taskService.checkWorkGroupId(+params['id']));
-      this.workGroupId = +params['id'];
-      this.subscribeTaskService = this.taskService
-        .getTasksMapByWorkGroupId(this.workGroupId)
-        .subscribe((data) => (this.tasksData = data));
-    });
-  }
-
-  ngOnDestroy(): void {
-    console.log(this.workGroupId);
-    this.subscribeRoute.unsubscribe();
-    this.subscribeTaskService.unsubscribe();
+    //? add to localStorage **
+    this.taskService.newTasks();
   }
 
   updateTasks(taskTurple: [number, Task]) {
@@ -136,10 +139,12 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
         }
       }
     }
+    //? add to localStorage **
+    this.taskService.newTasks();
   }
 
   onOpenAddDialog() {
-    const dialogRef = this.dialog.open(AddTodoComponent, {
+    const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '520px',
       height: '577px',
       restoreFocus: false,
@@ -155,12 +160,15 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
         this.tasksData.get(result.statusNumber)?.forEach((item, index) => {
           item.statusPosition = index;
         });
+        this.taskService.pushTask(result);
+        //? add to localStorage **
+        this.taskService.newTasks();
       }
     });
   }
 
   onOpenAddDialogByStatus(statusNumber: number) {
-    const dialogRef = this.dialog.open(AddTodoComponent, {
+    const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '520px',
       height: '577px',
       restoreFocus: false,
@@ -176,6 +184,9 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
         this.tasksData.get(result.statusNumber)?.forEach((item, index) => {
           item.statusPosition = index;
         });
+        this.taskService.pushTask(result);
+        //? add to localStorage **
+        this.taskService.newTasks();
       }
     });
   }

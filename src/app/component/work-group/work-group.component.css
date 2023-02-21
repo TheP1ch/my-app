@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
+  max-height: 79vh;
 }
 
 header {
@@ -56,7 +57,7 @@ button[type="reset"] {
   cursor: pointer;
 }
 
-.addTodo {
+.addTask {
   padding: 0px 20px 0px 46px;
   border: none;
   width: fit-content;
@@ -67,12 +68,12 @@ button[type="reset"] {
   cursor: pointer;
 }
 
-.addTodo span {
+.addTask span {
   font-size: 16px;
   line-height: 40px;
 }
 
-.addTodo span::before {
+.addTask span::before {
   content: "";
   position: absolute;
   background-image: url("../../../assets/img/workGroup/IconBackward.svg");
@@ -103,6 +104,7 @@ main {
   flex-direction: row;
   justify-content: space-between;
   gap: 16px;
+  max-height: 79vh;
 }
 
 main h3 {
@@ -122,21 +124,31 @@ main h3 {
 
 .statusColumn {
   display: flex;
-  min-height: 100%;
+  min-height: 416px;
   width: 305px;
-  max-height: 804px;
+  max-height: 77vh;
   box-sizing: border-box;
   background: rgba(236, 241, 244, 0.5);
   border-radius: 4px;
   flex-direction: column;
-  padding: 11px 8px 0 8px;
+  padding: 10px 8px 6px 8px;
   align-items: center;
   gap: 8px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.statusColumn::-webkit-scrollbar {
-  width: 0;
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(0deg, #f9cc7b, #f7764a, #f9cc7b);
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent; /* opacity: 0; should do the thing either */
+  box-shadow: 0px 0px 0px 100000vh white;
 }
 
 .statusColumn__header {
@@ -171,7 +183,7 @@ main h3 {
   opacity: 0;
 }
 
-.addTodoByStatus {
+.addTaskByStatus {
   width: 32px;
   height: 32px;
   border-radius: 4px;
@@ -181,6 +193,10 @@ main h3 {
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+}
+
+.addTaskByStatus:hover {
+  border: 1px solid rgba(172, 176, 187, 0.437);
 }
 
 .cdk-drag-animating {
@@ -195,7 +211,7 @@ main h3 {
 }
 
 .statusColumn.cdk-drop-list-dragging
-  app-todo-component:not(.cdk-drag-placeholder) {
+  app-task-component:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 

@@ -4,11 +4,11 @@ import { Priorities, Statuses, Tasks, Users } from 'src/app/commons/constants';
 import { Task, User } from 'src/app/commons/interfaces';
 
 @Component({
-  selector: 'app-add-todo',
-  templateUrl: './add-todo.component.html',
-  styleUrls: ['./add-todo.component.css'],
+  selector: 'app-add-task',
+  templateUrl: './add-task.component.html',
+  styleUrls: ['./add-task.component.css'],
 })
-export class AddTodoComponent {
+export class AddTaskComponent {
   private _task: Task = {
     workGroupId: this.data.workGroupId,
     id: Tasks.length,
@@ -82,7 +82,7 @@ export class AddTodoComponent {
   }
 
   constructor(
-    public dialogRef: MatDialogRef<AddTodoComponent>,
+    public dialogRef: MatDialogRef<AddTaskComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { workGroupId: number; statusNumber?: number }
   ) {

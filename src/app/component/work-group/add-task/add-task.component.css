@@ -18,6 +18,7 @@ header {
 
 mat-dialog-content {
   padding: 24px 14px 12px 26px !important;
+  flex: 1 0 auto;
 }
 
 h2.mdc-dialog__title {
@@ -105,7 +106,7 @@ mat-dialog-content button::after {
   content: "";
   width: 8px;
   height: 4.5px;
-  background-image: url("../../../../assets/img/todo/statusChoseEditIcon.svg");
+  background-image: url("../../../../assets/img/task/statusChoseEditIcon.svg");
   background-repeat: no-repeat;
   right: 10px;
   top: 10px;
@@ -115,7 +116,8 @@ mat-dialog-content button::after {
   top: 17px;
 }
 
-.status .statusName {
+.status .statusName,
+.status .fixed-status-name {
   box-sizing: border-box;
   border: 1px solid #56b9f2;
   width: fit-content;
@@ -133,6 +135,15 @@ header div {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+header div.fixed {
+  justify-content: center;
+}
+
+.status .fixed-status-name {
+  font-size: 16px;
+  border-radius: 7px;
 }
 
 mat-dialog-content button {
@@ -155,6 +166,7 @@ mat-dialog-content {
 }
 
 mat-dialog-content h1 {
+  min-height: 30px;
   font-weight: 700;
   font-size: 20px;
   line-height: 150%;
@@ -185,8 +197,19 @@ mat-dialog-content .users-btn > img {
   border-radius: 50%;
 }
 
+.nameInput,
+.priceInput {
+  width: 480px;
+  box-sizing: border-box;
+  padding-left: 15px;
+  border: 1px solid rgba(0, 66, 105, 0.28);
+  font-size: 16px;
+  height: 40px;
+  border-radius: 4px;
+  outline: none;
+}
+
 .mdc-dialog__actions {
-  /* margin */
   justify-content: flex-end;
   padding: 0px 14px 13px 26px !important;
   gap: 12px !important;
@@ -199,4 +222,9 @@ mat-dialog-content .users-btn > img {
 
 .mat-mdc-raised-button:not(:disabled) {
   background-color: #0078d2 !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }

@@ -1,6 +1,6 @@
 <header>
   <h2>Заявки</h2>
-  <button type="button" class="addTodo" (click)="onOpenAddDialog()">
+  <button type="button" class="addTask" (click)="onOpenAddDialog()">
     <span>Добавить сделку</span>
   </button>
   <div class="search">
@@ -64,11 +64,11 @@
         </p>
         <button
           type="button"
-          class="addTodoByStatus"
+          class="addTaskByStatus"
           (click)="onOpenAddDialogByStatus(status.id)"
         ></button>
       </div>
-      <app-todo-component
+      <app-task-component
         *ngFor="
           let task of getTasksCertainGroup(tasksData, status.id)
             | filterByName : searchByName
@@ -78,7 +78,7 @@
         [previousStatus]="task.statusNumber"
         cdkDrag
         (onChangeTask)="updateTasks($event)"
-      ></app-todo-component>
+      ></app-task-component>
     </div>
   </ng-container>
 </main>

@@ -1,19 +1,42 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { Tasks, WorkGroups } from '../commons/constants';
-import { Task } from '../commons/interfaces';
+import { Task, WorkGroup } from '../commons/interfaces';
 import { Statuses } from '../commons/constants';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskServiceService {
+  private Tasks: Task[] = [];
+
+  constructor(private localStorageService: LocalStorageService) {}
+
   private readonly _tasks$: BehaviorSubject<Task[]> = new BehaviorSubject(
-    Tasks
+    this.Tasks
   );
 
   checkWorkGroupId(workGroupId: number): boolean {
-    if (WorkGroups.find((item) => item.id === workGroupId)) {
+    let workGroups: WorkGroup[] = [];
+    if (!this.localStorageService.getData('Tasks')) {
+      for (let workGroup of WorkGroups) {
+        workGroups.push({ ...workGroup });
+      }
+    } else {
+      const data: WorkGroup[] = JSON.parse(
+        this.localStorageService.getData('workGroups') || '[]'
+      );
+
+      if (data.length !== 0) {
+        workGroups = data;
+      } else {
+        for (let workGroup of WorkGroups) {
+          workGroups.push({ ...workGroup });
+        }
+      }
+    }
+    if (workGroups.find((item) => item.id === workGroupId)) {
       return true;
     }
     return false;
@@ -36,5 +59,30 @@ export class TaskServiceService {
       })
     );
     return taskMap;
+  }
+
+  newTasks() {
+    if (!this.localStorageService.getData('Tasks') && this.Tasks.length === 0) {
+      for (let task of Tasks) {
+        this.Tasks.push({ ...task });
+      }
+    } else {
+      if (this.Tasks.length !== 0) {
+        this.localStorageService.saveData('Tasks', JSON.stringify(this.Tasks));
+      }
+      const data: Task[] = JSON.parse(
+        this.localStorageService.getData('Tasks') || '[]'
+      );
+
+      if (data.length !== 0) {
+        this.Tasks = data;
+      }
+    }
+
+    this._tasks$.next(this.Tasks);
+  }
+
+  pushTask(task: Task) {
+    this.Tasks.push(task);
   }
 }

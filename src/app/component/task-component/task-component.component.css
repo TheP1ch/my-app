@@ -88,7 +88,7 @@ span {
   color: inherit;
 }
 
-.todoInfo {
+.taskInfo {
   width: 217px;
   display: flex;
   flex-direction: column;
@@ -110,15 +110,15 @@ span {
 }
 
 .phoneButton {
-  background-image: url("../../../assets/img/todo/IconPhone.svg");
+  background-image: url("../../../assets/img/task/IconPhone.svg");
 }
 
 .messageButton {
-  background-image: url("../../../assets/img/todo/message.svg");
+  background-image: url("../../../assets/img/task/message.svg");
 }
 
 .commentButton {
-  background-image: url("../../../assets/img/todo/comment.svg");
+  background-image: url("../../../assets/img/task/comment.svg");
 }
 
 footer {
@@ -128,7 +128,7 @@ footer {
   align-items: center;
 }
 
-.editTodoButton {
+.editTaskButton {
   font-size: 12px;
   line-height: 24px;
   color: rgba(0, 57, 92, 0.8);
@@ -141,10 +141,10 @@ footer {
   position: relative;
 }
 
-.editTodoButton::before {
+.editTaskButton::before {
   content: "";
   position: absolute;
-  background-image: url("../../../assets/img/todo/+button.svg");
+  background-image: url("../../../assets/img/task/+button.svg");
   background-repeat: no-repeat;
   background-position: center;
   width: 12px;
