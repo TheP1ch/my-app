@@ -8,7 +8,7 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root',
 })
 export class WorkGroupService {
-  public workGroups: WorkGroup[] = [];
+  private workGroups: WorkGroup[] = [];
 
   constructor(private localStorageService: LocalStorageService) {}
 

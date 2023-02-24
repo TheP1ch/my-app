@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { WorkGroups } from 'src/app/commons/constants';
 import { WorkGroup } from 'src/app/commons/interfaces';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { WorkGroupService } from 'src/app/services/work-group.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { WorkGroupService } from 'src/app/services/work-group.service';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
-  public workGroups: WorkGroup[]; //! в сервис перенести
+  public workGroups: WorkGroup[];
 
   @ViewChild('nameInput', { static: false }) nameInput: ElementRef;
 
@@ -52,7 +51,6 @@ export class MainComponent implements OnInit {
     if (!target.readOnly) {
       target.readOnly = !target.readOnly;
     }
-    console.log(this.workGroupService.workGroups);
     //! add to localStorage **
     this.workGroupService.newData();
   }
