@@ -32,7 +32,6 @@ export class MainComponent implements OnInit {
       id: this.workGroups.length + 1,
       name: `Рабочая группа ${this.workGroups.length + 1}`,
     };
-    this.workGroups.push(workGroup);
     this.workGroupService.pushWorkGroup(workGroup);
     //! add to localStorage **
     this.workGroupService.newData();
