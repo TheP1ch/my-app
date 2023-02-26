@@ -60,7 +60,14 @@
         </h3>
 
         <p class="sum">
-          {{ sumCalculation(getTasksCertainGroup(tasksData, status.id)) }} ₽
+          {{
+            sumCalculation(
+              getTasksCertainGroup(tasksData, status.id)
+                | filterByName : searchByName
+                | filterByPriority : filterByPriorityId
+            )
+          }}
+          ₽
         </p>
         <button
           type="button"
