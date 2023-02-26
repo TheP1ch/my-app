@@ -1,5 +1,7 @@
 :host {
   display: flex;
+  overflow-x: auto;
+  width: 100vw;
 }
 
 .leftSide {
@@ -13,6 +15,7 @@
 }
 .mainPart {
   flex: 14 0 auto;
+  overflow-x: auto;
 }
 
 .groupSector {
