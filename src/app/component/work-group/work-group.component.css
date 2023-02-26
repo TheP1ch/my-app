@@ -102,7 +102,7 @@ main {
   flex-direction: row;
   justify-content: space-between;
   gap: 16px;
-  max-height: calc(100vh - 60px - 42px - 5vh - 35px);
+  max-height: calc(100vh - 60px - 42px - 5vh - 37px);
 }
 
 main h3 {
