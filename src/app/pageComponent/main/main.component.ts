@@ -20,8 +20,9 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //! add to localStorage **
-    this.workGroupService.newData();
+    this.workGroupService
+      .getWorkGroups()
+      .subscribe((data: any[]) => this.workGroupService.setWorkGroups(data));
     this.workGroupService.workGroups$.subscribe((data) => {
       this.workGroups = data;
     });
@@ -29,13 +30,14 @@ export class MainComponent implements OnInit {
 
   AddWorkGroup() {
     const workGroup = {
-      id: this.workGroups.length + 1,
-      name: `Рабочая группа ${this.workGroups.length + 1}`,
+      name: `Рабочая группа ${
+        this.workGroups[this.workGroups.length - 1].id + 1
+      }`,
     };
-    this.workGroupService.pushWorkGroup(workGroup);
-    //! add to localStorage **
-    this.workGroupService.newData();
-    this.router.navigate(['/work-group', this.workGroups.length]);
+    this.workGroupService.pushWorkGroup(workGroup).subscribe((data) => {
+      this.workGroups.push(data);
+      this.router.navigate(['/work-group', data.id]);
+    });
   }
 
   enableInput(target: any) {
@@ -50,8 +52,6 @@ export class MainComponent implements OnInit {
     if (!target.readOnly) {
       target.readOnly = !target.readOnly;
     }
-    //! add to localStorage **
-    this.workGroupService.newData();
   }
 
   exitInputbyEnter(event: KeyboardEvent) {

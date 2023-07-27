@@ -1,12 +1,14 @@
 import {
   Component,
   DoCheck,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Users } from '../../commons/constants';
@@ -24,8 +26,8 @@ export class TaskComponentComponent implements OnChanges {
   @Output() onChangeTask: EventEmitter<[number, Task]> = new EventEmitter<
     [number, Task]
   >();
-  constructor(private dialog: MatDialog) {}
 
+  constructor(private dialog: MatDialog) {}
   user: User | undefined;
   ngOnChanges(changes: SimpleChanges) {
     this.user = Users.find((user) => user.id === this.task?.userId);

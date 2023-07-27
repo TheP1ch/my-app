@@ -1,31 +1,34 @@
-<section class="leftSide">
-  <div class="groupSector">
-    <ng-container *ngFor="let workGroup of workGroups">
-      <a
-        routerLinkActive="groupSector__link_active"
-        [routerLink]="['/work-group', workGroup.id]"
-        class="groupSector__link"
-      >
-        <input
-          type="text"
-          [(ngModel)]="workGroup.name"
-          readonly="true"
-          maxlength="20"
-          (blur)="disableInput($event.target)"
-          (dblclick)="enableInput($event.target)"
-          (keydown)="exitInputbyEnter($event)"
-          #nameInput
-        />
-      </a>
-    </ng-container>
-    <!-- groupSector__link_active -->
-    <button class="addGroupButton" type="button" (click)="AddWorkGroup()">
-      <span>Добавить группу</span>
-    </button>
-  </div>
+<app-header></app-header>
+<div class="main">
+  <section class="leftSide">
+    <div class="groupSector">
+      <ng-container *ngFor="let workGroup of workGroups">
+        <a
+          routerLinkActive="groupSector__link_active"
+          [routerLink]="['/work-group', workGroup.id]"
+          class="groupSector__link"
+        >
+          <input
+            type="text"
+            [(ngModel)]="workGroup.name"
+            readonly="true"
+            maxlength="20"
+            (blur)="disableInput($event.target)"
+            (dblclick)="enableInput($event.target)"
+            (keydown)="exitInputbyEnter($event)"
+            #nameInput
+          />
+        </a>
+      </ng-container>
+      <!-- groupSector__link_active -->
+      <button class="addGroupButton" type="button" (click)="AddWorkGroup()">
+        <span>Добавить группу</span>
+      </button>
+    </div>
 
-  <a class="leftSide__menuSettings">Настройки меню</a>
-</section>
-<section class="mainPart">
-  <router-outlet></router-outlet>
-</section>
+    <a class="leftSide__menuSettings">Настройки меню</a>
+  </section>
+  <section class="mainPart">
+    <router-outlet></router-outlet>
+  </section>
+</div>

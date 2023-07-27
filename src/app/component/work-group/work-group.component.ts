@@ -45,10 +45,11 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
   tasksData: Map<number, Task[]>;
 
   ngOnInit(): void {
+    this.taskService
+      .getTasks()
+      .subscribe((data) => this.taskService.setTasks(data));
+
     this.subscribeRoute = this.route.params.subscribe((params) => {
-      //? add to localStorage **
-      this.taskService.newTasks();
-      console.log(this.taskService.checkWorkGroupId(+params['id']));
       this.workGroupId = +params['id'];
       this.subscribeTaskService = this.taskService
         .getTasksMapByWorkGroupId(this.workGroupId)
@@ -106,9 +107,11 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
     }
     this.tasksData?.get(currentStatusNumber)?.forEach((item, index) => {
       item.statusPosition = index;
+      console.log(item);
+      this.taskService
+        .changeTaskStatus(item)
+        .subscribe((data) => console.log(data));
     });
-    //? add to localStorage **
-    this.taskService.newTasks();
   }
 
   updateTasks(taskTurple: [number, Task]) {
@@ -132,42 +135,25 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
           this.tasksData.get(taskTurple[1].statusNumber)?.push(task);
           this.tasksData?.get(taskTurple[0])?.forEach((item, index) => {
             item.statusPosition = index;
+            this.taskService.changeTaskStatus(item);
           });
           this.tasksData?.get(task?.statusNumber)?.forEach((item, index) => {
             item.statusPosition = index;
+            this.taskService.changeTaskStatus(item);
           });
         }
       }
     }
-    //? add to localStorage **
-    this.taskService.newTasks();
+    this.taskService
+      .editTask(taskTurple[1])
+      .subscribe((data) => console.log(data));
   }
 
   onOpenAddDialog() {
-    const dialogRef = this.dialog.open(AddTaskComponent, {
-      width: '520px',
-      height: '577px',
-      restoreFocus: false,
-      backdropClass: 'bg',
-      panelClass: 'taskDialog',
-      autoFocus: 'first-header',
-      data: { workGroupId: this.workGroupId },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log(result);
-        this.tasksData.get(result.statusNumber)?.unshift(result);
-        this.tasksData.get(result.statusNumber)?.forEach((item, index) => {
-          item.statusPosition = index;
-        });
-        this.taskService.pushTask(result);
-        //? add to localStorage **
-        this.taskService.newTasks();
-      }
-    });
+    this.onOpenAddDialogByStatus(undefined);
   }
 
-  onOpenAddDialogByStatus(statusNumber: number) {
+  onOpenAddDialogByStatus(statusNumber: number | undefined) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '520px',
       height: '577px',
@@ -183,10 +169,11 @@ export class WorkGroupComponent implements OnInit, OnDestroy {
         this.tasksData.get(result.statusNumber)?.unshift(result);
         this.tasksData.get(result.statusNumber)?.forEach((item, index) => {
           item.statusPosition = index;
+          this.taskService.changeTaskStatus(item);
         });
-        this.taskService.pushTask(result);
-        //? add to localStorage **
-        this.taskService.newTasks();
+        this.taskService
+          .pushTask(result)
+          .subscribe((data) => console.log(data));
       }
     });
   }

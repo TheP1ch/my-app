@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, filter, map, Observable } from 'rxjs';
-import { Tasks, WorkGroups } from '../commons/constants';
-import { Task, WorkGroup } from '../commons/interfaces';
+import { Tasks, Url, WorkGroups } from '../commons/constants';
+import { PostRequestDTO, Task, WorkGroup } from '../commons/interfaces';
 import { Statuses } from '../commons/constants';
 import { LocalStorageService } from './local-storage.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -11,35 +12,26 @@ import { LocalStorageService } from './local-storage.service';
 export class TaskServiceService {
   private Tasks: Task[] = [];
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(
+    private localStorageService: LocalStorageService,
+    private http: HttpClient
+  ) {}
 
-  private readonly _tasks$: BehaviorSubject<Task[]> = new BehaviorSubject(
-    this.Tasks
-  );
+  private readonly _tasks$: BehaviorSubject<Task[]> = new BehaviorSubject<
+    Task[]
+  >(this.Tasks);
 
-  checkWorkGroupId(workGroupId: number): boolean {
-    let workGroups: WorkGroup[] = [];
-    if (!this.localStorageService.getData('Tasks')) {
-      for (let workGroup of WorkGroups) {
-        workGroups.push({ ...workGroup });
-      }
-    } else {
-      const data: WorkGroup[] = JSON.parse(
-        this.localStorageService.getData('workGroups') || '[]'
-      );
+  get tasks$(): Observable<any[]> {
+    return this._tasks$.asObservable();
+  }
 
-      if (data.length !== 0) {
-        workGroups = data;
-      } else {
-        for (let workGroup of WorkGroups) {
-          workGroups.push({ ...workGroup });
-        }
-      }
-    }
-    if (workGroups.find((item) => item.id === workGroupId)) {
-      return true;
-    }
-    return false;
+  setTasks(tasks: any[]) {
+    this.Tasks = tasks;
+    this._tasks$.next(this.Tasks);
+  }
+
+  public getTasks(): Observable<any> {
+    return this.http.get(`${Url}/Request`);
   }
 
   getTasksMapByWorkGroupId(
@@ -61,28 +53,49 @@ export class TaskServiceService {
     return taskMap;
   }
 
-  newTasks() {
-    if (!this.localStorageService.getData('Tasks') && this.Tasks.length === 0) {
-      for (let task of Tasks) {
-        this.Tasks.push({ ...task });
-      }
-    } else {
-      if (this.Tasks.length !== 0) {
-        this.localStorageService.saveData('Tasks', JSON.stringify(this.Tasks));
-      }
-      const data: Task[] = JSON.parse(
-        this.localStorageService.getData('Tasks') || '[]'
-      );
+  editTask(task: Task) {
+    let editTaskDTO = {
+      name: task.name,
+      price: task.price,
+      priorityId: task.priorityId,
+      statusNumber: task.statusNumber,
+      userId: task.userId,
+      comment: task.comment,
+    };
+    let params = new HttpParams();
+    params = params.append('id', task.id);
+    return this.http.put<any>(`${Url}/Request/EditRequest`, editTaskDTO, {
+      params,
+    });
+  }
 
-      if (data.length !== 0) {
-        this.Tasks = data;
+  changeTaskStatus(task: Task) {
+    let params = new HttpParams();
+    params = params.append('id', task.id);
+    params = params.append('statusNumber', task.statusNumber);
+    params = params.append('statusPosition', task.statusPosition);
+    return this.http.put<any>(
+      `${Url}/Request/ChangeStatus`,
+      {},
+      {
+        params,
       }
-    }
-
-    this._tasks$.next(this.Tasks);
+    );
   }
 
   pushTask(task: Task) {
+    console.log(task);
+    let taskDTO = {
+      workGroupId: task.workGroupId,
+      name: task.name,
+      price: task.price,
+      userId: task.userId,
+      priorityId: task.priorityId,
+      statusNumber: task.statusNumber,
+      statusPosition: task.statusPosition,
+      comment: task.comment,
+    };
     this.Tasks.push(task);
+    return this.http.post<any>(`${Url}/Request`, taskDTO);
   }
 }

@@ -2,7 +2,7 @@ import { Task, WorkGroup } from './interfaces';
 import { User } from './interfaces';
 
 export const WorkGroups: WorkGroup[] = [{ id: 1 }, { id: 2 }];
-
+export const Url: string = 'https://localhost:7203/api';
 export const Users: User[] = [
   {
     id: 0,

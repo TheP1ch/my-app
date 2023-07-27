@@ -1,55 +1,39 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { WorkGroups } from '../commons/constants';
+import { Url, WorkGroups } from '../commons/constants';
 import { WorkGroup } from '../commons/interfaces';
 import { LocalStorageService } from './local-storage.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WorkGroupService {
-  private workGroups: WorkGroup[] = [];
+  private workGroups: any[] = [];
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(
+    private localStorageService: LocalStorageService,
+    private httpService: HttpClient
+  ) {}
 
-  private readonly _workGroups$: BehaviorSubject<WorkGroup[]> =
-    new BehaviorSubject(this.workGroups);
+  private readonly _workGroups$: BehaviorSubject<any[]> = new BehaviorSubject<
+    any[]
+  >([]);
 
-  get workGroups$(): Observable<WorkGroup[]> {
+  get workGroups$(): Observable<any[]> {
     return this._workGroups$.asObservable();
   }
 
-  newData() {
-    if (
-      !this.localStorageService.getData('workGroups') &&
-      this.workGroups.length === 0
-    ) {
-      for (let workGroup of WorkGroups.map((item) => {
-        item.name = `Рабочая группа ${item.id}`;
-        return item;
-      })) {
-        this.workGroups.push({ ...workGroup });
-      }
-    } else {
-      if (this.workGroups.length !== 0) {
-        this.localStorageService.saveData(
-          'workGroups',
-          JSON.stringify(this.workGroups)
-        );
-      }
-
-      const data: WorkGroup[] = JSON.parse(
-        this.localStorageService.getData('workGroups') || '[]'
-      );
-
-      if (data.length !== 0) {
-        this.workGroups = data;
-      }
-    }
+  setWorkGroups(workGroups: any[]) {
+    this.workGroups = workGroups;
     this._workGroups$.next(this.workGroups);
   }
 
-  pushWorkGroup(workGroup: WorkGroup) {
-    this.workGroups.push(workGroup);
+  getWorkGroups(): Observable<any[]> {
+    return this.httpService.get<any[]>(`${Url}/WorkGroup`);
+  }
+
+  pushWorkGroup(workGroup: any) {
+    return this.httpService.post<any>(`${Url}/WorkGroup`, workGroup);
   }
 }

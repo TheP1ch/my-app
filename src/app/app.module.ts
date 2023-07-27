@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
@@ -22,6 +22,12 @@ import { AddTaskComponent } from './component/work-group/add-task/add-task.compo
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
 import { FilterByPriorityPipe } from './pipes/filter-by-priority.pipe';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { LoginPageComponent } from './pageComponent/login/login-page/login-page.component';
+import { HTTPInterceptorService } from './services/interceptor-http.service';
 
 registerLocaleData(localeRu);
 
@@ -36,6 +42,7 @@ registerLocaleData(localeRu);
     AddTaskComponent,
     FilterByNamePipe,
     FilterByPriorityPipe,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,8 +56,20 @@ registerLocaleData(localeRu);
     MatMenuModule,
     CommonModule,
     ScrollingModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: HTTPInterceptorService,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

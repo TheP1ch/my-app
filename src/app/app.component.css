@@ -1,4 +1,4 @@
-:host {
+/* :host {
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -12,8 +12,13 @@ app-header {
 
 app-main {
   flex: 1 0 auto;
-}
+} */
 
 /* ::-webkit-scrollbar {
   height: 3px;
 } */
+
+:host {
+  height: 100%;
+  display: block;
+}

@@ -22,3 +22,14 @@ export interface WorkGroup {
   id: number;
   name?: string;
 }
+
+export interface PostRequestDTO {
+  workGroupId: number;
+  name: string;
+  price: number;
+  userId: number;
+  priorityId: number;
+  statusNumber: number;
+  statusPosition: number;
+  comment: string;
+}

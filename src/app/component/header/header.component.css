@@ -79,3 +79,19 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+.pacman {
+  z-index: 2;
+}
+.pacman circle {
+  fill: #fef200;
+  stroke-width: 1px;
+  stroke: black;
+}
+
+.inner-triangle {
+  stroke-width: 1px;
+  stroke: black;
+}
+.pacman polygon {
+  fill: #ffffff;
+}
